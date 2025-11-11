@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa y Dispositivos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+    <style>
+        #map {
+            height: 500px; /* altura del mapa */
+            width: 100%;   /* ancho completo */
+            border-radius: 12px;
+        }
+    </style>
+</head>
+
+<body style="background: url('{{ url_for('static', filename='img/fondo3.png') }}') no-repeat center center fixed; background-size: cover; padding-top: 56px;">
+
+    <!-- Barra superior y menú lateral -->
+    {% include 'navbar_sidebar.html' %}
+
+    <!-- Contenido principal -->
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh; padding: 20px;">
+        <div class="container text-center">
+            <div class="card shadow-lg rounded-4 border-0 p-4" 
+                 style="background-color: rgba(50, 50, 50, 0.4); color: white;">
+                <h1 class="mb-4">Mapa y Dispositivos</h1>
+
+                <!-- Contenedor del mapa -->
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Bootstrap -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+
+    <!-- Script de Google Maps -->
+    <script>
+        function initMap() {
+            // Coordenadas iniciales (puedes poner las tuyas)
+            const ubicacionInicial = { lat: 19.4326, lng: -99.1332 }; // Ciudad de México
+
+            // Crear mapa
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: ubicacionInicial,
+                mapTypeId: "roadmap",
+            });
+
+            // Agregar marcador
+            const marker = new google.maps.Marker({
+                position: ubicacionInicial,
+                map: map,
+                title: "Ubicación inicial",
+            });
+        }
+    </script>
+
+    <!-- Llamada al API de Google Maps -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBt4zNCsnvDjuxdHE5hgacwO0EM-v7efwU&callback=initMap">
+    </script>
+</body>
+</html>

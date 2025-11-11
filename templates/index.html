@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body style="background: url('{{ url_for('static', filename='img/fondo3.png') }}') no-repeat center center fixed; background-size: cover; padding-top: 56px;">
+
+    <!-- Barra superior y menú lateral (copiado de generadorQR.html) -->
+    {% include 'navbar_sidebar.html' %}
+
+    <!-- Contenido principal -->
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding: 20px;">
+        <div class="container text-center">
+            <div class="card shadow-lg rounded-4 border-0 p-4" 
+                 style="background-color: rgba(50, 50, 50, 0.4); color: white;">
+                <h1 class="mb-4">Bienvenido a ControlAT</h1>
+                <p class="lead">El proyecto consiste en el desarrollo de un sistema inteligente que registra la asistencia de los alumnos y muestra su ubicación en tiempo real dentro de las instalaciones escolares. Su objetivo principal es mejorar la seguridad y el control escolar en niveles básico y medio.
+
+Mediante el uso de tecnologías de geolocalización y códigos QR o identificación digital, el sistema permite saber quiénes se encuentran dentro del plantel, su horario de entrada y salida, y su ubicación aproximada. Además, proporciona a los docentes y al personal administrativo una herramienta eficiente para supervisar la asistencia y responder rápidamente ante cualquier situación de riesgo o emergencia.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

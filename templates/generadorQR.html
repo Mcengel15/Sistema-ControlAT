@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de QR</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+
+<body style="background: url('{{ url_for('static', filename='img/fondo3.png') }}') no-repeat center center fixed; background-size: cover; padding-top: 56px;">
+
+    <!-- Barra superior y menú lateral -->
+    {% include 'navbar_sidebar.html' %}
+
+    <!-- Contenido principal -->
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; padding: 20px;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 col-md-8">
+                    <div class="card shadow-lg rounded-4 border-0 p-4" 
+                         style="background-color: rgba(50, 50, 50, 0.4); color: white;">
+
+                        <h1 class="mb-4 text-center">Generador de QR</h1>
+
+                        <!-- Formulario para generar QR -->
+                        <form method="POST" class="text-center">
+                            <input type="text" name="url" class="form-control mb-3" placeholder="Ingresa URL (opcional)">
+                            <button type="submit" class="btn btn-primary btn-lg">Generar QR</button>
+                        </form>
+
+                        {% if qr_filename %}
+                        <div class="mt-5">
+                            <h2 class="h5 mb-3 text-center">Código QR generado:</h2>
+                            <div class="text-center">
+                                <img src="{{ '/' + qr_filename }}" 
+                                     class="img-fluid border rounded p-2 bg-white shadow-lg" 
+                                     style="max-width: 250px;" 
+                                     alt="Código QR">
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>

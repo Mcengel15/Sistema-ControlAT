@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body style="background: url('{{ url_for('static', filename='img/fondo3.png') }}') no-repeat center center fixed; background-size: cover; padding-top: 56px;">
+
+    {% include 'navbar_sidebar.html' %}
+
+    <div class="d-flex justify-content-center align-items-start" style="min-height: 100vh; padding: 20px; gap: 30px; flex-wrap: wrap;">
+        <!-- 🔹 Login -->
+        <div class="card shadow-lg rounded-4 border-0 p-4" style="background-color: rgba(50, 50, 50, 0.4); color: white; max-width: 350px;">
+            <h2 class="mb-4 text-center">Inicio de Sesión</h2>
+            <form method="POST">
+                <input type="hidden" name="action" value="login">
+                <input type="text" name="usuario" class="form-control mb-3" placeholder="Usuario" required>
+                <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
+                <button type="submit" class="btn btn-primary btn-lg w-100">Entrar</button>
+            </form>
+        </div>
+
+        <!-- 🔹 Registro -->
+<div class="card shadow-lg rounded-4 border-0 p-4" style="background-color: rgba(50, 50, 50, 0.4); color: white; max-width: 350px;">
+    <h2 class="mb-4 text-center">Registro</h2>
+    <form method="POST">
+        <input type="hidden" name="action" value="register">
+        <input type="text" name="usuario" class="form-control mb-3" placeholder="Usuario" required>
+        <input type="email" name="email" class="form-control mb-3" placeholder="Correo electrónico" required>
+        <input type="password" name="password" class="form-control mb-3" placeholder="Contraseña" required>
+        
+        <!-- Radio buttons para tipo de usuario -->
+        <div class="mb-3">
+            <label class="form-label fw-bold">¿Quién se registra?</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="tipo_usuario" id="alumno" value="alumno" required>
+                <label class="form-check-label" for="alumno">
+                    Alumno
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="tipo_usuario" id="docente" value="docente">
+                <label class="form-check-label" for="docente">
+                    Docente
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="tipo_usuario" id="padre" value="padre_tutor">
+                <label class="form-check-label" for="padre">
+                    Padre o Tutor
+                </label>
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-success btn-lg w-100">Registrarse</button>
+    </form>
+</div>
+
+    {% if message %}
+    <div class="text-center mt-4 text-white">
+        <strong>{{ message }}</strong>
+    </div>
+    {% endif %}
+
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+</body>
+</html>
